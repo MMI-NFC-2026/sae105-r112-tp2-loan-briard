@@ -1,1 +1,50 @@
 /* code css à faire */
+/* --- menu (popover plein écran) ------------------------------------------ */
+
+.menu {
+  width: 100%;
+  height: 100%; 
+  border: 0;
+} 
+/* contrôle la taille d'interface du menu*/
+html:has(.menu:popover-open) {
+  overflow: hidden;
+}
+/*permet de masquer le défilement de la page pendant l'ouverture du menu */
+.burger {
+  cursor: pointer;
+}
+/*permet de définir le curseur sur le bouton hamburger*/
+.menu {
+  transition: 400ms allow-discrete;
+  opacity: 0;
+}
+/*permet de définir la transition d'opacité du menu*/
+.menu:popover-open {
+  opacity: 1;
+}
+/*permet de définir l'opacité du menu lorsqu'il est ouvert*/
+@starting-style {
+  .menu:popover-open {
+    opacity: 0;
+  }/*permet de définir l'opacité du menu lorsqu'il est ouvert pour la première fois*/
+}
+/*popover:https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using*/
+
+@starting-style {
+  .menu:popover-open .burger--close {
+    transform: none;
+  }
+}
+/*permet de définir la roatation du bouton burger lorsqu'il est ouvert pour la première fois*/
+.menu:popover-open .burger--close {
+  transform: rotate(90deg);
+  transition: 400ms;
+}/*permet de définir la transition de rotation du bouton hamburger lorsqu'il est ouvert*/
+
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .menu .burger--close {
+    transition: none;
+  }
+}/*permet de désactiver les transitions pour les utilisateurs qui ont activé la réduction des mouvements*/
